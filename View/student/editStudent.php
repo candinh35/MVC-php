@@ -29,7 +29,7 @@ require_once $dir . "View/layout/header.php"
             <div class="text-center mt-4 text-primary">
                 <h2>Editor</h2>
             </div>
-            <form action="student-store" method="post" class="p-5" enctype="multipart/form-data">
+            <form action="/MVC/index.php/student-update/<?php echo  $student['id']?>" method="post" class="p-5" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="">Name</label>
                     <input type="text" name="name" id="" class="form-control" placeholder="" aria-describedby="helpId"

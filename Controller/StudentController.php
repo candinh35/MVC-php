@@ -34,7 +34,7 @@ class StudentController
     public function store()
     {
         // kiểm tra validate dữ liệu
-        if (Helper::validate($_POST)) {
+        if (Helper::validate($_POST, 'store')) {
             $student = [
                 'name' => Helper::validateInput($_POST['name']) ,
                 'birthday' => $_POST['birthday'],
@@ -64,7 +64,7 @@ class StudentController
 
     public function update($id)
     {
-        if (Helper::validate($_POST)) {
+        if (Helper::validate($_POST, 'update')) {
             // pass validate thì sẽ upload tabel student trước 
             $this->student->update($id, $_POST);
 
@@ -81,7 +81,7 @@ class StudentController
                 $this->createImage($id);
             }
             $_SESSION['success'] = "You are update success";
-            header('Location:index.php');
+            header('Location:student');
         } else {
             $previous_url = str_replace('http://candv.test:86/', '', $_SERVER['HTTP_REFERER']);
             header("Location:$previous_url");

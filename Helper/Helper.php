@@ -18,7 +18,7 @@ class Helper
         move_uploaded_file($fileTmp, $uploads.$image);
         return $image;
     }
-    public static function validate($data)
+    public static function validate($data, $method): bool
     {
         // kiểm tra xem có tồn tại giá trị không
         if (empty($data['name']) || empty($data['birthday']) || empty($data['address'])) {
@@ -26,7 +26,7 @@ class Helper
             return false;
         }
         // kiểm tra nếu tạo mới thì phải thêm cả ảnh
-        if ($_GET['action'] == 'store') {
+        if ($method == 'store') {
             if (isset($_FILES['images']['name']) && !$_FILES['images']['name'][0] != null) {
                 $_SESSION['error'] = 'Please fill in files required fields.';
                 return false;
